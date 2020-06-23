@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ obj.name }}</h2>
+    <form action="#" method="post">
+
+        {% csrf_token %}
+        {% for foo in obj.item_set.all %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        {% if foo.completed == True %}
+                            <input type="checkbox" value="clicked" name="c{{ foo.id }}" checked>
+                        {% else %}
+                            <input type="checkbox" value="clicked" name="c{{ foo.id }}" checked>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+                <input type="text" value="{{ foo.text }}" class="form-control">
+            </div>
+        {% endfor %}
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="submit" name="newItem" value="newItem" class="btn btn-success">ADD Item</button>
+            </div>
+            <input type="text" name="new" >
+        </div>
+        <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+
+
+    </form>
+
+{% endblock %}

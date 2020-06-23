@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Create Page</h2>
+    <form action="{% url 'create' %}" method="post" class="form-group">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="submit" name="save" class="btn btn-success"> Create New</button>
+            </div>
+            {{ form.name }}
+        </div>
+    </form>
+{% endblock %}
